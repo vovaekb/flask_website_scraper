@@ -14,8 +14,28 @@ $ redis-server
 $ python worker.py
 $ python run.py
 ```
+### Test in browser
 Navigate to url http://127.0.0.1:5000/ in browser.
 
 REST API endpoints:
+<<<<<<< HEAD
 * / (GET, POST) - enter url of website to parse. Returns task_id - id of webscriping job.
 * /results/<task_id> (GET) - get status of job execution and get results. Results will be awailable for downloading as links.txt file.
+=======
+
+/ (GET, POST) - enter url of website to parse. Returns task_id - id of webscriping job.
+/results/<task_id> (GET) - get status of job execution and get results. Results will be awailable for downloading as links.txt file.
+
+### Test using curl
+To enter url of website to parse
+```bash
+curl -X POST -d "url=http://www.nytimes.com" http://127.0.0.1:5000/ 
+```
+Returns task_id - id of webscriping job.
+
+To get status of job execution and get results
+```bash
+curl http://127.0.0.1:5000/results/<task_id>
+```
+Results will be awailable for downloading as links.txt file.
+>>>>>>> 0d53055dcddd6baf497d523dcc5cce96bee23d94
