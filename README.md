@@ -1,5 +1,5 @@
 # flask_website_scraper
-Simple Flask App for web scraping using RQ and Redis message broker.
+Flask REST API for web scraping using RQ and Redis message broker.
 
 ## Setup and running
 We need to install Redis server. Then install all necessary python packages using requirements.txt
