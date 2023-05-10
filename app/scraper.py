@@ -1,12 +1,17 @@
 import os
-import time
 from bs4 import BeautifulSoup
-import requests
 import urllib.request
 from app import app
 
 
 def scrape_website(url):
+    """Scrapes website
+    
+    Keyword arguments:
+    url -- url of website to scrape
+    Return: path to result file
+    """
+    
     errors = []
     
     try:
@@ -18,7 +23,11 @@ def scrape_website(url):
         return {"error": errors}
     
     parser = 'html.parser'
-    soap = BeautifulSoup(resp, parser, from_encoding=resp.info().get_param('charset'))
+    soap = BeautifulSoup(
+        resp, 
+        parser, 
+        from_encoding=resp.info().get_param('charset')
+    )
 
     links = []
     for link in soap.find_all('a', href=True):
@@ -26,7 +35,11 @@ def scrape_website(url):
 
     filename = 'links.txt'
     basedir = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename), 'w') as f:
+    file_path = os.path.join(
+        basedir,
+        app.config['UPLOAD_FOLDER'], filename
+    )
+    with open(file_path, 'w') as f:
         for link in links:
             f.write(link + '\n')
 
