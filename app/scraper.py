@@ -5,22 +5,21 @@ from app import app
 
 
 def scrape_website(url):
-    """Scrapes website
+    """Parses links from website and save to file
     
     Keyword arguments:
     url -- url of website to scrape
     Return: path to result file
     """
-    
     errors = []
     
     try:
         resp = urllib.request.urlopen(url)
     except:
         errors.append(
-            "Unable to get URL. Please make sure it's valid and try again."
+            'Unable to get URL. Please make sure it's valid and try again.''
         )
-        return {"error": errors}
+        return {'error': errors}
     
     parser = 'html.parser'
     soap = BeautifulSoup(
@@ -33,6 +32,7 @@ def scrape_website(url):
     for link in soap.find_all('a', href=True):
         links.append(link['href'])
 
+    # save links to file
     filename = 'links.txt'
     basedir = os.path.abspath(os.path.dirname(__file__))
     file_path = os.path.join(

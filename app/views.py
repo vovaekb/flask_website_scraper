@@ -6,6 +6,7 @@ from app import app
 from worker import conn
 from app.scraper import scrape_website
 
+
 q = Queue(connection=conn)
 
 
